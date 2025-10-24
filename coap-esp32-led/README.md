@@ -1,4 +1,5 @@
 # CoAP Server on ESP32 with LED Control
+![License](https://img.shields.io/badge/License-MIT-blue.svg)
 
 This project demonstrates how to create a CoAP (Constrained Application Protocol) server on an ESP32 microcontroller to expose and control an LED resource. CoAP is a lightweight protocol designed for machine-to-machine (M2M) communication over low-power networks. It mirrors the RESTful principles of HTTP but with less overhead, making it ideal for constrained devices like the ESP32.
 
@@ -58,3 +59,4 @@ The code is divided into two parts:
 
 ## License
 This project is licensed under the MIT License.
+
