@@ -305,16 +305,4 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         print("\n\n👋 Interrupted by user. Goodbye!")
         sys.exit(0)
-```
 
-## Project Structure
-```
-your_project/
-├── src/
-│   ├── main.cpp
-│   └── coap_server.cpp
-├── include/
-│   └── coap_server.h
-├── platformio.ini (or Arduino IDE)
-└── client/
-    └── coap_client.py
