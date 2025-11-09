@@ -1,0 +1,486 @@
+/* ===== RESET & BASE ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ===== ANIMATED BACKGROUND ===== */
+body::before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.15) 0%, transparent 50%);
+  animation: backgroundMove 20s ease-in-out infinite;
+  z-index: 0;
+}
+
+@keyframes backgroundMove {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-50px, -50px); }
+}
+
+/* ===== CONTAINER ===== */
+.container {
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 30px;
+  padding: 50px 40px;
+  box-shadow: 
+    0 30px 80px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.3) inset;
+  max-width: 550px;
+  width: 100%;
+  backdrop-filter: blur(20px);
+  position: relative;
+  z-index: 1;
+  animation: containerFadeIn 0.6s ease-out;
+}
+
+@keyframes containerFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== DECORATIVE ELEMENTS ===== */
+.container::before,
+.container::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+  z-index: -1;
+}
+
+.container::before {
+  width: 150px;
+  height: 150px;
+  top: -30px;
+  right: -30px;
+  animation: float 6s ease-in-out infinite;
+}
+
+.container::after {
+  width: 100px;
+  height: 100px;
+  bottom: -20px;
+  left: -20px;
+  animation: float 8s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+/* ===== HEADER ===== */
+h1 {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 36px;
+  margin-bottom: 8px;
+  text-align: center;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  text-shadow: 0 2px 10px rgba(102, 126, 234, 0.2);
+}
+
+.subtitle {
+  color: #888;
+  text-align: center;
+  margin-bottom: 35px;
+  font-size: 15px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* ===== STATUS CONTAINER ===== */
+.status-container {
+  background: linear-gradient(135deg, #f8f9ff 0%, #e8ecff 100%);
+  border-radius: 20px;
+  padding: 35px;
+  margin-bottom: 35px;
+  text-align: center;
+  box-shadow: 
+    0 8px 25px rgba(102, 126, 234, 0.15),
+    0 0 0 1px rgba(102, 126, 234, 0.1) inset;
+  position: relative;
+  overflow: hidden;
+}
+
+.status-container::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ===== LED INDICATOR ===== */
+.led-indicator {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  background: linear-gradient(135deg, #e0e0e0 0%, #bdbdbd 100%);
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.15),
+    0 0 0 8px rgba(255, 255, 255, 0.5),
+    0 0 0 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  position: relative;
+  z-index: 1;
+}
+
+.led-indicator::before {
+  content: '';
+  position: absolute;
+  inset: 15%;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  filter: blur(5px);
+}
+
+.led-indicator.on {
+  background: radial-gradient(circle at 30% 30%, #ffeb3b 0%, #ff9800 50%, #ff5722 100%);
+  box-shadow: 
+    0 0 40px rgba(255, 152, 0, 0.8),
+    0 0 80px rgba(255, 87, 34, 0.6),
+    0 0 120px rgba(255, 235, 59, 0.4),
+    0 0 0 8px rgba(255, 255, 255, 0.8),
+    0 0 0 12px rgba(255, 152, 0, 0.3);
+  animation: ledPulse 2s ease-in-out infinite, ledGlow 1.5s ease-in-out infinite;
+  transform: scale(1.05);
+}
+
+@keyframes ledPulse {
+  0%, 100% { transform: scale(1.05); }
+  50% { transform: scale(1.12); }
+}
+
+@keyframes ledGlow {
+  0%, 100% { 
+    box-shadow: 
+      0 0 40px rgba(255, 152, 0, 0.8),
+      0 0 80px rgba(255, 87, 34, 0.6),
+      0 0 120px rgba(255, 235, 59, 0.4),
+      0 0 0 8px rgba(255, 255, 255, 0.8),
+      0 0 0 12px rgba(255, 152, 0, 0.3);
+  }
+  50% { 
+    box-shadow: 
+      0 0 60px rgba(255, 152, 0, 1),
+      0 0 100px rgba(255, 87, 34, 0.8),
+      0 0 140px rgba(255, 235, 59, 0.6),
+      0 0 0 8px rgba(255, 255, 255, 1),
+      0 0 0 12px rgba(255, 152, 0, 0.5);
+  }
+}
+
+#status {
+  font-size: 22px;
+  font-weight: 700;
+  color: #333;
+  margin-top: 15px;
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.status-hint {
+  font-size: 13px;
+  color: #999;
+  margin-top: 8px;
+  font-weight: 400;
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== BUTTONS ===== */
+.buttons-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+button {
+  flex: 1;
+  min-width: 150px;
+  padding: 18px 35px;
+  font-size: 18px;
+  font-weight: 700;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Effet de brillance au survol */
+button::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transform: rotate(45deg);
+  transition: all 0.6s;
+}
+
+button:hover::after {
+  left: 100%;
+}
+
+/* Effet d'ondulation au clic */
+button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+button:active::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Bouton ON */
+.btn-on {
+  background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
+  color: white;
+  box-shadow: 
+    0 8px 20px rgba(58, 123, 213, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+}
+
+.btn-on:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 
+    0 12px 30px rgba(58, 123, 213, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.3) inset;
+}
+
+.btn-on:active {
+  transform: translateY(-2px) scale(1.01);
+}
+
+/* Bouton OFF */
+.btn-off {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+  color: white;
+  box-shadow: 
+    0 8px 20px rgba(238, 90, 111, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+}
+
+.btn-off:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 
+    0 12px 30px rgba(238, 90, 111, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.3) inset;
+}
+
+.btn-off:active {
+  transform: translateY(-2px) scale(1.01);
+}
+
+/* Bouton désactivé */
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+  filter: grayscale(50%);
+}
+
+button:disabled::after,
+button:disabled::before {
+  display: none;
+}
+
+/* ===== ICONES DANS LES BOUTONS ===== */
+button span {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* ===== CONNECTION STATUS INDICATOR ===== */
+.connection-status {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #4caf50;
+  box-shadow: 0 0 10px rgba(76, 175, 80, 0.8);
+  animation: connectionPulse 2s ease-in-out infinite;
+}
+
+@keyframes connectionPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.connection-status.disconnected {
+  background: #f44336;
+  box-shadow: 0 0 10px rgba(244, 67, 54, 0.8);
+}
+
+/* ===== LOADING ANIMATION ===== */
+.loading {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 0.8s linear infinite;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ===== FOOTER INFO ===== */
+.footer-info {
+  margin-top: 30px;
+  text-align: center;
+  color: #999;
+  font-size: 13px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.footer-info span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.footer-info .signal-icon {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  gap: 2px;
+  align-items: flex-end;
+}
+
+.footer-info .signal-bar {
+  width: 3px;
+  background: linear-gradient(to top, #667eea, #764ba2);
+  border-radius: 2px;
+  animation: signalBounce 1.5s ease-in-out infinite;
+}
+
+.footer-info .signal-bar:nth-child(1) {
+  height: 6px;
+  animation-delay: 0s;
+}
+
+.footer-info .signal-bar:nth-child(2) {
+  height: 10px;
+  animation-delay: 0.2s;
+}
+
+.footer-info .signal-bar:nth-child(3) {
+  height: 14px;
+  animation-delay: 0.4s;
+}
+
+@keyframes signalBounce {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(0.5); }
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 480px) {
+  .container {
+    padding: 35px 25px;
+    border-radius: 25px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+    letter-spacing: 1.5px;
+  }
+
+  .led-indicator {
+    width: 80px;
+    height: 80px;
+  }
+
+  button {
+    min-width: 130px;
+    font-size: 16px;
+    padding: 15px 25px;
+  }
+
+  .status-container {
+    padding: 25px;
+  }
+
+  #status {
+    font-size: 18px;
+  }
+}

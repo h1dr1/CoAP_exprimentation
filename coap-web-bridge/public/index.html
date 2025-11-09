@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ESP32 CoAP LED Control</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="connection-status" id="connectionStatus"></div>
+    
+    <h1>🔌 ESP32 LED Control</h1>
+    <p class="subtitle">CoAP Protocol - Mode Local</p>
+    
+    <div class="status-container">
+      <div class="led-indicator" id="ledIndicator"></div>
+      <p id="status">LED status: OFF</p>
+      <p class="status-hint">Cliquez pour changer l'état</p>
+    </div>
+
+    <div class="buttons-container">
+      <button class="btn-on" onclick="setLED('on')">
+        <span>💡 Turn ON</span>
+      </button>
+      <button class="btn-off" onclick="setLED('off')">
+        <span>⚫ Turn OFF</span>
+      </button>
+    </div>
+    
+    <div class="footer-info">
+      <span>
+        <div class="signal-icon">
+          <div class="signal-bar"></div>
+          <div class="signal-bar"></div>
+          <div class="signal-bar"></div>
+        </div>
+        Mode Local
+      </span>
+      <span>•</span>
+      <span id="lastUpdate">Last update: --:--</span>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
