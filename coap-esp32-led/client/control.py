@@ -30,12 +30,12 @@ async def send_coap_request(server_ip, payload):
         response = await context.request(request).response
         
         # Print the server's response
-        print(f"✅ Response Code: {response.code}")
-        print(f"✅ Response Payload: {response.payload.decode()}")
+        print(f"Response Code: {response.code}")
+        print(f" Response Payload: {response.payload.decode()}")
 
     except Exception as e:
         # Handle errors (e.g., server not found, timeout)
-        print(f"❌ An error occurred: {e}", file=sys.stderr)
+        print(f"An error occurred: {e}", file=sys.stderr)
         print("   Please check the IP address and ensure the ESP32 server is running.", file=sys.stderr)
         
     finally:
